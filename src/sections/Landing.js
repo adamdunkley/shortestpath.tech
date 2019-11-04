@@ -43,6 +43,8 @@ const Landing = () => (
                 <Box width={["250px", "250px", "300px"]} sx={{ display: 'inline-block' }}>
                   <Img
                     fluid={companyLogo.fluid}
+                    fadeIn={false}
+                    loading="eager"
                     alt={company}
                   />
                 </Box>

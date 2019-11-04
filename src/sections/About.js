@@ -62,7 +62,7 @@ const AboutInfoPicture = (props) => (
     {paths[props.i]}
     <Fade>
       <Box width={[200, 324, 324]} sx={{ display: 'inline-block' }}>
-        <Img fluid={props.fluidImage} />
+        <Img fluid={props.fluidImage} fadeIn={false} loading={props.i === 0 ? "eager" : "lazy"} />
       </Box>
     </Fade>
   </Box>
