@@ -1,6 +1,7 @@
 import React from 'react';
 import { StaticQuery, graphql } from 'gatsby';
-import { Heading, Image } from 'rebass';
+import Img from 'gatsby-image';
+import { Heading, Box } from 'rebass';
 import Fade from 'react-reveal/Fade';
 import Section from '../components/Section';
 import Container from '../components/Container';
@@ -39,11 +40,12 @@ const Landing = () => (
                 as="div"
                 mb={[3, 4, 4]}
               >
-                <Image
-                  srcSet={companyLogo.fluid.srcSet}
-                  alt={company}
-                  width={["250px", "250px", "300px"]}
-                />
+                <Box width={["250px", "250px", "300px"]} sx={{ display: 'inline-block' }}>
+                  <Img
+                    fluid={companyLogo.fluid}
+                    alt={company}
+                  />
+                </Box>
               </Heading>
               <Heading
                 textAlign="center"

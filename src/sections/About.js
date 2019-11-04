@@ -1,6 +1,7 @@
 import React from 'react';
-import { Heading, Text, Box, Image, Flex } from 'rebass';
+import { Heading, Text, Box, Flex } from 'rebass';
 import { StaticQuery, graphql } from 'gatsby';
+import Img from 'gatsby-image';
 import styled from 'styled-components';
 import Fade from 'react-reveal/Fade';
 import ScrollButton from '../components/ScrollButton';
@@ -60,10 +61,9 @@ const AboutInfoPicture = (props) => (
     sx={{ position: 'relative' }}>
     {paths[props.i]}
     <Fade>
-      <Image
-        srcSet={props.fluidImage.srcSet}
-        width={[200, 324, 324]}
-      />
+      <Box width={[200, 324, 324]} sx={{ display: 'inline-block' }}>
+        <Img fluid={props.fluidImage} />
+      </Box>
     </Fade>
   </Box>
 );

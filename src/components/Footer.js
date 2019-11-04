@@ -1,8 +1,8 @@
 import React from 'react';
-import { Text, Box, Flex, Image, Link } from 'rebass';
+import { Text, Box, Flex, Link } from 'rebass';
 import { StaticQuery, graphql } from 'gatsby';
+import Img from 'gatsby-image';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import MeImage from '../assets/me.png';
 import MeBackground from '../assets/me-background.svg';
 
 const footerQuery = graphql`
@@ -31,15 +31,16 @@ const Footer = () => (
               backgroundRepeat: 'repeat-x',
               backgroundSize: ['680px', '900px', '1024px'],
             }}>
-            <Image
-              srcSet={footerImage.fluid.srcSet}
-              alt="Hand drawing of Adam"
+            <Box
               width={['300px', '420px', '480px']}
-              style={{
-                display: 'block',
-                margin: '0 auto',
-              }}
-            />
+              sx={{
+                margin: '0 auto'
+              }}>
+                <Img
+                  fluid={footerImage.fluid}
+                  alt="Hand drawing of Adam"
+                />
+            </Box>
           </Box>
           <Box mt={0} pt={3} pb={3} sx={{
             background: '#0A0A0A',
