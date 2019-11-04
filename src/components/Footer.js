@@ -3,6 +3,11 @@ import { Text, Box, Flex, Link } from 'rebass';
 import { StaticQuery, graphql } from 'gatsby';
 import Img from 'gatsby-image';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import {
+  faCreativeCommons,
+  faCreativeCommonsBy,
+  faCreativeCommonsSa
+} from '@fortawesome/free-brands-svg-icons';
 import MeBackground from '../assets/me-background.svg';
 
 const footerQuery = graphql`
@@ -61,9 +66,9 @@ const Footer = () => (
                 <Link
                   href="https://creativecommons.org/licenses/by-sa/4.0/"
                   target="_blank" variant="footer" rel="noopener">
-                    <FontAwesomeIcon icon={['fab', 'creative-commons']} />&nbsp;
-                    <FontAwesomeIcon icon={['fab', 'creative-commons-by']} />&nbsp;
-                    <FontAwesomeIcon icon={['fab', 'creative-commons-sa']} />&nbsp;
+                    <FontAwesomeIcon icon={faCreativeCommons} />&nbsp;
+                    <FontAwesomeIcon icon={faCreativeCommonsBy} />&nbsp;
+                    <FontAwesomeIcon icon={faCreativeCommonsSa} />&nbsp;
                     Some&nbsp;Rights&nbsp;Reserved
                 </Link> – 
                   {new Date().getFullYear()}

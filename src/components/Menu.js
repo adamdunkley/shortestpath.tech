@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import styled from 'styled-components';
 import { push as PushMenu } from 'react-burger-menu';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faBars } from '@fortawesome/free-solid-svg-icons';
 import { Link } from "react-scroll";
 
 const styles = {
@@ -116,7 +117,7 @@ export default class Menu extends Component {
     return (
       <>
         <MenuButton onClick={this.open} style={{ opacity: this.state.isOpen || this.state.start ? 0 : 1 }}>
-          <FontAwesomeIcon icon="bars" color="white" size="lg" />
+          <FontAwesomeIcon icon={faBars} color="white" size="lg" />
         </MenuButton>
         <PushMenu isOpen={ this.state.isOpen } onStateChange={this.isMenuOpen} pageWrapId="page-wrap" outerContainerId="outer-container" styles={styles}>
           <MenuItem
