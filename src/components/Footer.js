@@ -60,7 +60,7 @@ const Footer = () => (
               <Text width={[1, 2/3, 1/2]} variant="main" pb={[1, 0, 0]} textAlign={['center', 'left', 'left']}>
                 <Link
                   href="https://creativecommons.org/licenses/by-sa/4.0/"
-                  target="_blank" variant="footer">
+                  target="_blank" variant="footer" rel="noopener">
                     <FontAwesomeIcon icon={['fab', 'creative-commons']} />&nbsp;
                     <FontAwesomeIcon icon={['fab', 'creative-commons-by']} />&nbsp;
                     <FontAwesomeIcon icon={['fab', 'creative-commons-sa']} />&nbsp;
@@ -71,7 +71,7 @@ const Footer = () => (
               <Text width={[1, 1/3, 1/2]} variant="main" textAlign={['center', 'right', 'right']} alignSelf="flex-end">
                 <Link
                   href="https://beta.companieshouse.gov.uk/company/12092755"
-                  target="_blank" variant="footer">{companyLongName}</Link>
+                  target="_blank" variant="footer" rel="noopener">{companyLongName}</Link>
               </Text>
             </Flex>
           </Box>
