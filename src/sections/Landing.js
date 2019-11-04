@@ -18,7 +18,7 @@ const landingQuery = graphql`
       company
       companyLogo {
         fluid(maxWidth: 400){
-          ...GatsbyContentfulFluid_withWebp
+          ...GatsbyContentfulFluid_withWebp_noBase64
         }
       }
     }

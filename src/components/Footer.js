@@ -16,7 +16,7 @@ const footerQuery = graphql`
       companyLongName
       footerImage {
         fluid(maxWidth: 600) {
-          ...GatsbyContentfulFluid_withWebp
+          ...GatsbyContentfulFluid_withWebp_noBase64
         }
       }
     }

@@ -135,7 +135,7 @@ const aboutQuery = graphql`
         }
         image {
           fluid(maxWidth: 400){
-            ...GatsbyContentfulFluid_withWebp
+            ...GatsbyContentfulFluid_withWebp_noBase64
           }
         }
         buttonText
