@@ -2,7 +2,6 @@ import React from 'react';
 import { StaticQuery, graphql } from 'gatsby';
 import Img from 'gatsby-image';
 import { Heading, Box } from 'rebass';
-import Fade from 'react-reveal/Fade';
 import Section from '../components/Section';
 import Container from '../components/Container';
 
@@ -30,7 +29,7 @@ const Landing = () => (
           const { name, description, company, companyLogo } = contentfulAbout;
 
           return (
-            <Fade>
+            <>
               <Heading
                 textAlign="center"
                 as="div"
@@ -65,7 +64,7 @@ const Landing = () => (
               >
                 {`${description}`}
               </Heading>
-            </Fade>
+            </>
           );
         }}
       />

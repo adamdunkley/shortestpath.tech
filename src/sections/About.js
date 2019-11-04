@@ -48,6 +48,10 @@ const paths = [
   </Box>,
 ];
 
+const OptionalFade = ({ fade, children }) => (
+  fade ? <Fade>{children}</Fade> : children
+);
+
 const AboutInfoPicture = (props) => (
   <Box
     width={[1, 7/12, 7/12]}
@@ -60,11 +64,11 @@ const AboutInfoPicture = (props) => (
     order={[(props.i * 2) - 1, 0, 0]}
     sx={{ position: 'relative' }}>
     {paths[props.i]}
-    <Fade>
+    <OptionalFade fade={props.i !== 0}>
       <Box width={[200, 324, 324]} sx={{ display: 'inline-block' }}>
         <Img fluid={props.fluidImage} fadeIn={false} loading={props.i === 0 ? "eager" : "lazy"} />
       </Box>
-    </Fade>
+    </OptionalFade>
   </Box>
 );
 
