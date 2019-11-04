@@ -5,10 +5,6 @@ import { Heading, Box } from 'rebass';
 import Fade from 'react-reveal/Fade';
 import Section from '../components/Section';
 import Container from '../components/Container';
-//
-// const LandingSection = styled(Section)`
-//   min-height: 100vh;
-// `;
 
 const landingQuery = graphql`
   query LandingQuery {
