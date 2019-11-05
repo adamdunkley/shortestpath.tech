@@ -1,3 +1,5 @@
+// @flow
+
 export default {
   colors: {
     text: '#0A0A0A',

@@ -6,7 +6,7 @@
 
 require('dotenv').config();
 
-const { ACCESS_TOKEN, SPACE_ID } = process.env;
+const { ACCESS_TOKEN, SPACE_ID, CONTENTFUL_HOST, GA_ID } = process.env;
 
 module.exports = {
   plugins: [
@@ -26,6 +26,13 @@ module.exports = {
       options: {
         spaceId: SPACE_ID,
         accessToken: ACCESS_TOKEN,
+        host: CONTENTFUL_HOST || 'cdn.contentful.com',
+      },
+    },
+    {
+      resolve: `gatsby-plugin-google-analytics`,
+      options: {
+        trackingId: GA_ID,
       },
     },
   ]
