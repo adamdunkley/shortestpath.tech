@@ -123,7 +123,7 @@ export default {
   },
   buttons: {
     primary: {
-      fontSize: 2,
+      fontSize: 3,
       fontWeight: 'body',
       color: 'background',
       bg: 'primary',
@@ -141,7 +141,7 @@ export default {
     },
     smallOutline: {
       variant: 'buttons.outline',
-      fontSize: 1,
+      fontSize: 2,
       padding: 2
     }
   },
