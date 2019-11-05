@@ -20,6 +20,10 @@ const GlobalStyle = createGlobalStyle`
     font-display: fallback;
     letter-spacing: ${theme.text.main.letterSpacing};
   }
+
+  button[disabled] {
+    opacity: ${theme.buttons.disabled.opacity};
+  }
 `;
 
 const LayoutContainer = styled.div`

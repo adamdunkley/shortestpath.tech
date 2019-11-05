@@ -93,6 +93,9 @@ export default {
       cursor: 'pointer',
       outline: 'none',
     },
+    disabled: {
+      opacity: 0.3,
+    },
     outline: {
       variant: 'buttons.primary',
       color: 'primary',
