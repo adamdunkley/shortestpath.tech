@@ -20,7 +20,7 @@ const Contact = () => (
           <Heading as="h2" variant="subheading" textAlign={['left', 'left', 'left']}>
             Book an intro call
           </Heading>
-          <Text variant="main" textAlign={['left', 'left', 'left']} mb={[3, 4, 4]}>
+          <Text variant="main" textAlign={['left', 'left', 'left']} mb={3}>
             Find a time below for a 30 minute call, I'd love to hear
             about your business.
           </Text>
@@ -29,10 +29,11 @@ const Contact = () => (
         <Box as="form" width={[1, 2/3, 1/2]} mt={[4, 4, 0]}  pl={3} pr={3} sx={{
             maxWidth: '512px'
           }} name="contact" method="POST" data-netlify="true">
+          <input type="hidden" name="form-name" value="contact" />
           <Heading as="h2" variant="subheading" textAlign={['left', 'left', 'left']}>
             Get in touch
           </Heading>
-          <Text variant="main" textAlign={['left', 'left', 'left']} mb={[3, 4, 4]}>
+          <Text variant="main" textAlign={['left', 'left', 'left']} mb={3}>
             If you prefer email, send me an intro here or in your email client
             at <Link href="mailto:intro@shortestpath.tech">intro@shortestpath.tech</Link>.
           </Text>
