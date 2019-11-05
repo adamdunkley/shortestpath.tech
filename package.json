@@ -35,6 +35,7 @@
     "react-fadethrough": "^2.0.1",
     "react-ga": "^2.7.0",
     "react-helmet": "^5.2.1",
+    "react-netlify-form": "^2.1.5",
     "react-reveal": "^1.2.2",
     "react-scroll": "^1.7.14",
     "rebass": "^4.0.7",
