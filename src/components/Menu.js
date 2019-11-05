@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
+import ReactGA from 'react-ga';
 import { push as PushMenu } from 'react-burger-menu';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBars } from '@fortawesome/free-solid-svg-icons';
@@ -84,9 +85,21 @@ export default class Menu extends Component {
       start: true,
     };
 
+    this.scrollPoints = {
+      about: 'About me',
+      'about-cto': 'What is an interim CTO?',
+      contact: 'Contact me',
+    };
+
+    this.scrollStates = {};
+    for (const id of Object.keys(this.scrollPoints)) {
+      this.scrollStates[id] = false;
+    }
+
     this.open = this.open.bind(this);
     this.isMenuOpen = this.isMenuOpen.bind(this);
     this.scroll = this.scroll.bind(this);
+    this.setActive = this.setActive.bind(this);
   }
 
   componentDidMount() {
@@ -113,6 +126,17 @@ export default class Menu extends Component {
     });
   }
 
+  setActive(to) {
+    if (this.scrollStates[to]) {
+      return;
+    }
+    ReactGA.event({
+      category: 'Navigation',
+      action: 'Scrolled to ' + to,
+    });
+    this.scrollStates[to] = true;
+  }
+
   render() {
     return (
       <>
@@ -120,39 +144,21 @@ export default class Menu extends Component {
           <FontAwesomeIcon icon={faBars} color="white" size="lg" />
         </MenuButton>
         <PushMenu isOpen={ this.state.isOpen } onStateChange={this.isMenuOpen} pageWrapId="page-wrap" outerContainerId="outer-container" styles={styles}>
-          <MenuItem
-            onClick={this.scroll}
-            activeClass="active"
-            to="about"
-            spy={true}
-            smooth={true}
-            duration={500}
-            offset={-42}
-          >
-            About me
-          </MenuItem>
-          <MenuItem
-            onClick={this.scroll}
-            activeClass="active"
-            to="about-cto"
-            spy={true}
-            smooth={true}
-            duration={500}
-            offset={-42}
-          >
-            What is an interim CTO?
-          </MenuItem>
-          <MenuItem
-            onClick={this.scroll}
-            activeClass="active"
-            to="contact"
-            spy={true}
-            smooth={true}
-            duration={500}
-            offset={-42}
-          >
-            Contact me
-          </MenuItem>
+          {Object.keys(this.scrollPoints).map(id => (
+            <MenuItem
+              onClick={this.scroll}
+              activeClass="active"
+              to={id}
+              spy={true}
+              smooth={true}
+              duration={500}
+              offset={-42}
+              onSetActive={this.setActive}
+              key={`menu-item-${id}`}
+            >
+              {this.scrollPoints[id]}
+            </MenuItem>
+          ))}
         </PushMenu>
       </>
     );
