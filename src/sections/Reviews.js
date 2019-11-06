@@ -62,13 +62,11 @@ const Reviews = () => (
             <Flex flexWrap='wrap' justifyContent="center" pl={3} pr={3} mt={3} mb={[4, 5, 5]}>
               <Box width={[1, 4/7]}>
                 <ComponentFader height="100px" width="100%" interval={9000}>
-                  {
-                    reviews.map((review, i) => (
-                      <Review variant="main" textAlign="center" fontSize={4} key={`review-${i}`}>
-                        {review.content.childMarkdownRemark.rawMarkdownBody}
-                      </Review>
-                    ))
-                  }
+                  {reviews.map((review, i) => (
+                    <Review variant="main" textAlign="center" fontSize={4} key={`review-${i}`}>
+                      {review.content.childMarkdownRemark.rawMarkdownBody}
+                    </Review>
+                  ))}
                 </ComponentFader>
               </Box>
             </Flex>
