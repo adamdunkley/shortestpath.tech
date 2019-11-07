@@ -39,6 +39,7 @@ const Helmet = ({ theme = {} }) => (
           <meta charSet="utf-8" />
           <title>{title}</title>
           <meta name="description" content={description} />
+          <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
           <link rel="shortcut icon" href={`https:${profile.favicon32.src}`} />
           <meta name="theme-color" content={theme.background} />
           <meta name="image" content={`https:${profile.favicon32.src}`} />

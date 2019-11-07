@@ -1,9 +1,7 @@
 import React from 'react';
 import NetlifyForm from 'react-netlify-form';
-import { Box, Button, Text } from 'rebass';
+import { Box, Button } from 'rebass';
 import { Label, Input, Textarea } from '@rebass/forms';
-
-const { GATSBY_SITE_RECAPTCHA_KEY } = process.env;
 
 const ContactForm = () => (
   <NetlifyForm
