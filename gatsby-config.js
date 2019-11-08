@@ -9,10 +9,14 @@ require('dotenv').config();
 const { ACCESS_TOKEN, SPACE_ID, CONTENTFUL_HOST, GA_ID } = process.env;
 
 module.exports = {
+  siteMetadata: {
+    siteUrl: `https://shortestpath.tech`,
+  },
   plugins: [
     'gatsby-plugin-react-helmet',
     'gatsby-plugin-styled-components',
     'gatsby-transformer-remark',
+    'gatsby-plugin-sitemap',
     {
       resolve: 'gatsby-plugin-web-font-loader',
       options: {
