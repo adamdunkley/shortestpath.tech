@@ -9,7 +9,7 @@ export default {
     gray: '#CCC',
   },
   fonts: {
-    body: 'Source Sans Pro Light, sans-serif',
+    body: 'Source Sans Pro, sans-serif',
     heading: 'Source Sans Pro, sans-serif',
     monospace: '"Roboto Mono", monospace',
   },
