@@ -21,7 +21,7 @@ module.exports = {
       resolve: 'gatsby-plugin-web-font-loader',
       options: {
         google: {
-          families: ['Spectral SC Medium', 'Source Sans Pro:300,400', 'Cabin', 'Open Sans'],
+          families: ['Spectral SC Medium', 'Source Sans Pro:200,400', 'Cabin', 'Open Sans'],
         },
       },
     },
