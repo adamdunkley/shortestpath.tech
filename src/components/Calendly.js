@@ -27,7 +27,7 @@ export default class Calendly extends Component {
         {
           showIframe &&
             <iframe
-              src="https://calendly.com/shortestpath/intro?hide_event_type_details=1&primary_color=4d5055"
+              src="https://calendly.com/adamdunkley/intro?hide_event_type_details=1&primary_color=4d5055"
               width="100%"
               height="100%"
               frameBorder="0"
