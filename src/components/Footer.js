@@ -76,9 +76,7 @@ const Footer = () => (
                 {new Date().getFullYear()}
               </Text>
               <Text width={[1, 1 / 3, 1 / 2]} variant="main" textAlign={['center', 'right', 'right']} alignSelf="flex-end">
-                <Link
-                  href="https://beta.companieshouse.gov.uk/company/12092755"
-                  target="_blank" variant="footer" rel="noopener">{companyLongName}</Link>
+                {companyLongName}
               </Text>
             </Flex>
           </Box>
