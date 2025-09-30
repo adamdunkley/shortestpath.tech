@@ -8,9 +8,8 @@ const Container = styled.div`
 const Fader = styled.div`
   grid-column: 1;
   grid-row: 1;
-  transition: opacity 1s;
   &.inactive {
-    opacity: 0;
+    display: none;
   }
 `;
 
@@ -102,10 +101,10 @@ export default class ComponentFader extends Component {
           {
             this.props.children.map((child, index) => (
               <Fader
-                key={ 'fadethrough-item-' + index }
-                className={ index === this.state.activeIndex ? null : 'inactive' }
+                key={'fader-item-' + index}
+                className={index === this.state.activeIndex ? null : 'inactive'}
               >
-                { child }
+                {child}
               </Fader>
             ))
           }
@@ -114,9 +113,9 @@ export default class ComponentFader extends Component {
           {
             this.props.children.map((child, index) => (
               <Dot
-                key={ 'fadethrough-dot-' + index }
-                className={ index === this.state.activeIndex ? 'active' : null }
-                onClick={ () => this.clickDot(index) }
+                key={'fader-dot-' + index}
+                className={index === this.state.activeIndex ? 'active' : null}
+                onClick={() => this.clickDot(index)}
               />
             ))
           }

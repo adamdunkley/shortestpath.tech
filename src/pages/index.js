@@ -1,5 +1,4 @@
 import React from 'react';
-import config from 'react-reveal/globals';
 import Layout from '../components/Layout';
 import Menu from '../components/Menu';
 import Landing from '../sections/Landing';
@@ -8,8 +7,6 @@ import AboutCTO from '../sections/AboutCTO';
 import Reviews from '../sections/Reviews';
 import Contact from '../sections/Contact';
 import Footer from '../components/Footer';
-
-config({ ssrFadeout: true });
 
 const IndexPage = () => (
   <Layout id="outer-container">

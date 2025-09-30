@@ -1,7 +1,7 @@
 import React from 'react';
 import { Text, Box, Flex, Link } from 'rebass';
 import { StaticQuery, graphql } from 'gatsby';
-import Img from 'gatsby-image';
+import { GatsbyImage } from 'gatsby-plugin-image';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   faCreativeCommons,
@@ -15,9 +15,11 @@ const footerQuery = graphql`
     contentfulAbout {
       companyLongName
       footerImage {
-        fluid(maxWidth: 600) {
-          ...GatsbyContentfulFluid_withWebp_noBase64
-        }
+        gatsbyImageData(
+          width: 600
+          placeholder: BLURRED
+          formats: [AUTO, WEBP]
+        )
       }
     }
   }
@@ -31,20 +33,20 @@ const Footer = () => (
       return (
         <>
           <Box pl={['40px', '60px', '85px']} mt={[4, 6, 6]} sx={{
-              backgroundImage: `url(${MeBackground})`,
-              backgroundPosition: ['left bottom', 'center bottom'],
-              backgroundRepeat: 'repeat-x',
-              backgroundSize: ['680px', '900px', '1024px'],
-            }}>
+            backgroundImage: `url(${MeBackground})`,
+            backgroundPosition: ['left bottom', 'center bottom'],
+            backgroundRepeat: 'repeat-x',
+            backgroundSize: ['680px', '900px', '1024px'],
+          }}>
             <Box
               width={['300px', '420px', '480px']}
               sx={{
                 margin: '0 auto'
               }}>
-                <Img
-                  fluid={footerImage.fluid}
-                  alt="Hand drawing of Adam"
-                />
+              <GatsbyImage
+                image={footerImage.gatsbyImageData}
+                alt="Hand drawing of Adam"
+              />
             </Box>
           </Box>
           <Box mt={0} pt={3} pb={3} sx={{
@@ -62,18 +64,18 @@ const Footer = () => (
                 maxWidth: 1024,
                 margin: '0 auto',
               }}>
-              <Text width={[1, 2/3, 1/2]} variant="main" pb={[1, 0, 0]} textAlign={['center', 'left', 'left']}>
+              <Text width={[1, 2 / 3, 1 / 2]} variant="main" pb={[1, 0, 0]} textAlign={['center', 'left', 'left']}>
                 <Link
                   href="https://creativecommons.org/licenses/by-sa/4.0/"
                   target="_blank" variant="footer" rel="noopener">
-                    <FontAwesomeIcon icon={faCreativeCommons} />&nbsp;
-                    <FontAwesomeIcon icon={faCreativeCommonsBy} />&nbsp;
-                    <FontAwesomeIcon icon={faCreativeCommonsSa} />&nbsp;
-                    Some&nbsp;Rights&nbsp;Reserved
-                </Link> – 
-                  {new Date().getFullYear()}
+                  <FontAwesomeIcon icon={faCreativeCommons} />&nbsp;
+                  <FontAwesomeIcon icon={faCreativeCommonsBy} />&nbsp;
+                  <FontAwesomeIcon icon={faCreativeCommonsSa} />&nbsp;
+                  Some&nbsp;Rights&nbsp;Reserved
+                </Link> –
+                {new Date().getFullYear()}
               </Text>
-              <Text width={[1, 1/3, 1/2]} variant="main" textAlign={['center', 'right', 'right']} alignSelf="flex-end">
+              <Text width={[1, 1 / 3, 1 / 2]} variant="main" textAlign={['center', 'right', 'right']} alignSelf="flex-end">
                 <Link
                   href="https://beta.companieshouse.gov.uk/company/12092755"
                   target="_blank" variant="footer" rel="noopener">{companyLongName}</Link>

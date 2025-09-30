@@ -1,6 +1,6 @@
 import React from 'react';
 import { StaticQuery, graphql } from 'gatsby';
-import Img from 'gatsby-image';
+import { GatsbyImage } from 'gatsby-plugin-image';
 import { Heading, Box } from 'rebass';
 import Section from '../components/Section';
 import Container from '../components/Container';
@@ -12,9 +12,11 @@ const landingQuery = graphql`
       description
       company
       companyLogo {
-        fluid(maxWidth: 400){
-          ...GatsbyContentfulFluid_withWebp_noBase64
-        }
+        gatsbyImageData(
+          width: 400
+          placeholder: BLURRED
+          formats: [AUTO, WEBP]
+        )
       }
     }
   }
@@ -36,9 +38,8 @@ const Landing = () => (
                 mb={[3, 4, 4]}
               >
                 <Box width={["250px", "250px", "300px"]} sx={{ display: 'inline-block' }}>
-                  <Img
-                    fluid={companyLogo.fluid}
-                    fadeIn={false}
+                  <GatsbyImage
+                    image={companyLogo.gatsbyImageData}
                     loading="eager"
                     alt={company}
                   />

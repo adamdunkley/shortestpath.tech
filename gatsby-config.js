@@ -4,7 +4,7 @@
  * See: https://www.gatsbyjs.org/docs/gatsby-config/
  */
 
-require('dotenv').config();
+require('dotenv').config({ quiet: true });
 
 const { ACCESS_TOKEN, SPACE_ID, CONTENTFUL_HOST, GA_ID } = process.env;
 
@@ -13,10 +13,20 @@ module.exports = {
     siteUrl: `https://shortestpath.tech`,
   },
   plugins: [
-    'gatsby-plugin-react-helmet',
-    'gatsby-plugin-styled-components',
+    `gatsby-plugin-image`,
+    `gatsby-transformer-sharp`,
+    `gatsby-plugin-sharp`,
+    `gatsby-plugin-react-helmet`,
+    `gatsby-plugin-sitemap`,
+    {
+      resolve: `gatsby-plugin-google-gtag`,
+      options: {
+        trackingIds: [GA_ID],
+        gtagConfig: { anonymize_ip: true },
+      },
+    },
+    `gatsby-plugin-styled-components`,
     'gatsby-transformer-remark',
-    'gatsby-plugin-sitemap',
     {
       resolve: 'gatsby-plugin-web-font-loader',
       options: {
@@ -31,12 +41,6 @@ module.exports = {
         spaceId: SPACE_ID,
         accessToken: ACCESS_TOKEN,
         host: CONTENTFUL_HOST || 'cdn.contentful.com',
-      },
-    },
-    {
-      resolve: `gatsby-plugin-google-analytics`,
-      options: {
-        trackingId: GA_ID,
       },
     },
   ]

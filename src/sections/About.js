@@ -1,12 +1,26 @@
 import React from 'react';
 import { Heading, Text, Box, Flex } from 'rebass';
 import { StaticQuery, graphql } from 'gatsby';
-import Img from 'gatsby-image';
+import { GatsbyImage } from 'gatsby-plugin-image';
 import styled from 'styled-components';
-import Fade from 'react-reveal/Fade';
 import ScrollButton from '../components/ScrollButton';
 import Section from '../components/Section';
 import Container from '../components/Container';
+
+const Fade = styled.div`
+  animation: fadeIn 1s ease-in-out;
+  
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+`;
 
 const FudgeBox = styled(Box)`
   right: -30px;
@@ -54,8 +68,8 @@ const OptionalFade = ({ fade, children }) => (
 
 const AboutInfoPicture = (props) => (
   <Box
-    width={[1, 7/12, 7/12]}
-    textAlign={props.even ? ['center' , 'left' , 'left'] : ['center', 'right', 'right']}
+    width={[1, 7 / 12, 7 / 12]}
+    textAlign={props.even ? ['center', 'left', 'left'] : ['center', 'right', 'right']}
     pl={props.even ? [0, 50, 50] : 0}
     pr={props.even ? 0 : [0, 50, 50]}
     mt={props.i === 0 ? [-120, -250, -250] : (props.even ? 0 : [0, -300, -300])}
@@ -66,7 +80,11 @@ const AboutInfoPicture = (props) => (
     {paths[props.i]}
     <OptionalFade fade={props.i !== 0}>
       <Box width={[200, 324, 324]} sx={{ display: 'inline-block' }}>
-        <Img fluid={props.fluidImage} fadeIn={false} loading={props.i === 0 ? "eager" : "lazy"} />
+        <GatsbyImage
+          image={props.fluidImage}
+          alt={props.itemTitle || "About section image"}
+          loading={props.i === 0 ? "eager" : "lazy"}
+        />
       </Box>
     </OptionalFade>
   </Box>
@@ -79,7 +97,7 @@ const AboutInfo = (props) => {
   for (const item of props.info) {
     if (even) {
       items.push(
-        <AboutInfoPicture even={even} itemTitle={item.title} fluidImage={item.image.fluid} i={i} key={item.title + 'Image'} />
+        <AboutInfoPicture even={even} itemTitle={item.title} fluidImage={item.image.gatsbyImageData} i={i} key={item.title + 'Image'} />
       );
     }
     items.push(
@@ -87,29 +105,29 @@ const AboutInfo = (props) => {
         alignSelf="flex-end"
         px={[4, 3, 3]}
         py={2}
-        width={[1, 5/12, 5/12]}
+        width={[1, 5 / 12, 5 / 12]}
         pb={even ? [40, 400, 400] : [40, 80, 80]}
         key={item.title}
-        order={[i*2, 0, 0]}>
+        order={[i * 2, 0, 0]}>
         <Fade>
           <Heading
             as="h3"
             letterSpacing={[1, 1, 1]}
             textAlign={['center', even ? 'right' : 'left', even ? 'right' : 'left']}
             pb={1}
-            >
-              {item.title}
+          >
+            {item.title}
           </Heading>
           <Text
             variant="main"
             fontSize={4}
             textAlign={['center', even ? 'right' : 'left', even ? 'right' : 'left']}
-            >
-              {item.content.childMarkdownRemark.rawMarkdownBody}
-              {item.buttonText ? <>
-                <br />
-                <ScrollButton variant="smallOutline" marginTop={2} scrollId={item.buttonScrollId}>{item.buttonText}</ScrollButton>
-              </> : null}
+          >
+            {item.content.childMarkdownRemark.rawMarkdownBody}
+            {item.buttonText ? <>
+              <br />
+              <ScrollButton variant="smallOutline" marginTop={2} scrollId={item.buttonScrollId}>{item.buttonText}</ScrollButton>
+            </> : null}
 
 
           </Text>
@@ -118,7 +136,7 @@ const AboutInfo = (props) => {
     );
     if (!even) {
       items.push(
-        <AboutInfoPicture even={even} itemTitle={item.title} fluidImage={item.image.fluid} i={i} key={item.title + 'Image'} />
+        <AboutInfoPicture even={even} itemTitle={item.title} fluidImage={item.image.gatsbyImageData} i={i} key={item.title + 'Image'} />
       );
     }
     i++;
@@ -138,9 +156,11 @@ const aboutQuery = graphql`
           }
         }
         image {
-          fluid(maxWidth: 400){
-            ...GatsbyContentfulFluid_withWebp_noBase64
-          }
+          gatsbyImageData(
+            width: 400
+            placeholder: BLURRED
+            formats: [AUTO, WEBP]
+          )
         }
         buttonText
         buttonScrollId
@@ -158,7 +178,7 @@ const About = () => (
           const { aboutInfo } = data.contentfulAbout;
           return (
             <Flex flexWrap='wrap'>
-                <AboutInfo info={aboutInfo}></AboutInfo>
+              <AboutInfo info={aboutInfo}></AboutInfo>
             </Flex>
           );
         }}

@@ -1,42 +1,56 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
-import ReactGA from 'react-ga';
-import { push as PushMenu } from 'react-burger-menu';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBars } from '@fortawesome/free-solid-svg-icons';
 import { Link } from "react-scroll";
 
-const styles = {
-  bmBurgerButton: {
-    display: 'none'
-  },
-  bmBurgerBars: {
-    background: '#0A0A0A',
-    backgroundBlendMode: 'difference'
-  },
-  bmBurgerBarsHover: {
-    background: '#0A0A0A'
-  },
-  bmCrossButton: {
-    height: '30px',
-    width: '30px'
-  },
-  bmCross: {
-    background: '#FFFFFF'
-  },
-  bmMenuWrap: {
-    position: 'fixed',
-    height: '100%'
-  },
-  bmMenu: {
-    background: '#0A0A0A',
-    padding: '2.5em 1.5em 0',
-    fontSize: '1.15em'
-  },
-  bmMorphShape: {
-    fill: '#373a47'
+const SlideOutMenu = styled.div`
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 300px;
+  height: 100vh;
+  background: #0A0A0A;
+  padding: 2.5em 1.5em 0;
+  font-size: 1.15em;
+  z-index: 999;
+  transform: translateX(${props => props.isOpen ? '0' : '-100%'});
+  transition: transform 0.3s ease-in-out;
+  overflow-y: auto;
+`;
+
+const CloseButton = styled.button`
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  background: none;
+  border: none;
+  color: #FFFFFF;
+  font-size: 24px;
+  cursor: pointer;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  
+  &:hover {
+    opacity: 0.7;
   }
-}
+`;
+
+const Overlay = styled.div`
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 998;
+  opacity: ${props => props.isOpen ? '1' : '0'};
+  visibility: ${props => props.isOpen ? 'visible' : 'hidden'};
+  transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
+`;
 
 const MenuButton = styled.a`
   mix-blend-mode: difference;
@@ -97,7 +111,7 @@ export default class Menu extends Component {
     }
 
     this.open = this.open.bind(this);
-    this.isMenuOpen = this.isMenuOpen.bind(this);
+    this.close = this.close.bind(this);
     this.scroll = this.scroll.bind(this);
     this.setActive = this.setActive.bind(this);
   }
@@ -114,9 +128,9 @@ export default class Menu extends Component {
     });
   }
 
-  isMenuOpen(state) {
+  close() {
     this.setState({
-      isOpen: state.isOpen
+      isOpen: false
     });
   }
 
@@ -130,10 +144,13 @@ export default class Menu extends Component {
     if (this.scrollStates[to]) {
       return;
     }
-    ReactGA.event({
-      category: 'Navigation',
-      action: 'Scrolled to ' + to,
-    });
+    // Track navigation events with gtag
+    if (typeof window !== 'undefined' && window.gtag) {
+      window.gtag('event', 'Scrolled to ' + to, {
+        event_category: 'Navigation',
+        event_label: to
+      });
+    }
     this.scrollStates[to] = true;
   }
 
@@ -143,7 +160,9 @@ export default class Menu extends Component {
         <MenuButton onClick={this.open} style={{ opacity: this.state.isOpen || this.state.start ? 0 : 1 }}>
           <FontAwesomeIcon icon={faBars} color="white" size="lg" />
         </MenuButton>
-        <PushMenu isOpen={ this.state.isOpen } onStateChange={this.isMenuOpen} pageWrapId="page-wrap" outerContainerId="outer-container" styles={styles}>
+        <Overlay isOpen={this.state.isOpen} onClick={this.close} />
+        <SlideOutMenu isOpen={this.state.isOpen}>
+          <CloseButton onClick={this.close}>×</CloseButton>
           {Object.keys(this.scrollPoints).map(id => (
             <MenuItem
               onClick={this.scroll}
@@ -152,14 +171,14 @@ export default class Menu extends Component {
               spy={true}
               smooth={true}
               duration={500}
-              offset={-42}
+              offset={-62}
               onSetActive={this.setActive}
               key={`menu-item-${id}`}
             >
               {this.scrollPoints[id]}
             </MenuItem>
           ))}
-        </PushMenu>
+        </SlideOutMenu>
       </>
     );
   }
