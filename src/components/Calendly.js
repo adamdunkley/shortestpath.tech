@@ -27,11 +27,11 @@ export default class Calendly extends Component {
         {
           showIframe &&
             <iframe
-              src="https://calendly.com/adamdunkley/intro?hide_event_type_details=1&primary_color=4d5055"
+              src="https://calendar.google.com/calendar/appointments/schedules/AcZssZ3cXH-Ke1bdgrFFNm5kr2VpLDlIWfSKAontnDvUhD6FrCjbLLCLxcf_Br8V2onukO9Uii9esrxI?gv=true"
               width="100%"
               height="100%"
               frameBorder="0"
-              title="Calendly"
+              title="Calendar"
             ></iframe>
         }
       </Box>
